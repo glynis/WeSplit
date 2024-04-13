@@ -41,10 +41,8 @@ struct ContentView: View {
                 }
                 Section("How much tip would you like to leave?") {
                     Picker("Tip Percentage", selection: $tipPercentage) {
-                        ForEach(1..<101) {
-                            Text("\($0)")
-//                        ForEach(tipPercentages, id: \.self) {
-//                            Text($0, format: .percent)
+                        ForEach(tipPercentages, id: \.self) {
+                            Text($0, format: .percent)
                         }
                     }
                     .pickerStyle(.navigationLink)
