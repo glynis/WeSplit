@@ -29,7 +29,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
+                Section ("Total amount of check to be split") {
                     TextField("Amount", value: $checkAmount, format: .currency(code: "USD"))
                         .keyboardType(.decimalPad) //to bring up num pad with . instead of keyboard
                         .focused($amountIsFocussed)
@@ -41,21 +41,24 @@ struct ContentView: View {
                 }
                 Section("How much tip would you like to leave?") {
                     Picker("Tip Percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
-                            Text($0, format: .percent)
+                        ForEach(1..<101) {
+                            Text("\($0)")
+//                        ForEach(tipPercentages, id: \.self) {
+//                            Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.navigationLink)
                 }
-                Section {
+                Section ("How many are in your party?") {
                     Picker("Number of people", selection: $numberOfPeople) {
                         ForEach(2..<100) {
                             Text("\($0) people")
                             //shows 4 people and not 2 because our default is 2 and our minimum is 2 so 2+2=4
                         }
                     }
+                    .pickerStyle(.navigationLink)
                 }
-                Section {
+                Section ("Amount Per Person") {
                     Text(totalPerPerson, format: .currency(code: "USD"))
                 }
                 .navigationTitle("WeSplit")
