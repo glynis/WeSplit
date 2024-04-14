@@ -45,9 +45,9 @@ struct ContentView: View {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.navigationLink)
+                    .pickerStyle(.segmented)
                 }
-                Section ("How many are in your party?") {
+                Section("How many are in your party?") {
                     Picker("Number of people", selection: $numberOfPeople) {
                         ForEach(2..<100) {
                             Text("\($0) people")
@@ -56,19 +56,19 @@ struct ContentView: View {
                     }
                     .pickerStyle(.navigationLink)
                 }
-                Section ("Amount Per Person") {
+                Section("Amount Per Person") {
                     Text(totalPerPerson, format: .currency(code: "USD"))
                 }
-                .navigationTitle("WeSplit")
-                .toolbar {
-                    if amountIsFocussed {
-                        Button("Done"){
-                            amountIsFocussed = false
-                        }
+            }
+            .navigationTitle("WeSplit")
+            .toolbar {
+                if amountIsFocussed {
+                    Button("Done") {
+                        amountIsFocussed = false
                     }
                 }
-                //toolbar button for "amountIsFocussed" to be marked Done so that when you are done typing the check amount into the textfield you can exit the numpad
             }
+            //toolbar button for "amountIsFocussed" to be marked Done so that when you are done typing the check amount into the textfield you can exit the numpad
         }
     }
 }
